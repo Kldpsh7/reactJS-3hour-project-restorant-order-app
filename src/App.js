@@ -1,71 +1,45 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import OrderFrom from "./components/Order-From/Order-Form";
 import Table from "./components/Table/Table";
+import './App.css'
 
 function App() {
 
-  const [table1Orders,setTable1Orders] = useState([]);
-  const [table2Orders,setTable2Orders] = useState([]);
-  const [table3Orders,setTable3Orders] = useState([]);
+  const [currentOrders,setCurrentOrders] = useState([]);
 
+  useEffect(()=>{
+    const savedOrders = JSON.parse(localStorage.getItem('orders'));
+    if(savedOrders.length>0){
+      setCurrentOrders(savedOrders)
+    }
+  },[])
 
   const newOrderHandler = (orderNumber,dish,price,table) => {
-    if(table==='1'){
-      setTable1Orders(prevOrders=>{
-        const updatedOrderds = [...prevOrders];
-        updatedOrderds.unshift({orderNumber:orderNumber,dish:dish,price:price});
-        return updatedOrderds
-      })
+    let savedOrders = JSON.parse(localStorage.getItem('orders'));
+    if(savedOrders){
+      savedOrders.push({orderNumber:orderNumber,dish:dish,price:price,forTable:table});
+    }else{
+      savedOrders=[{orderNumber:orderNumber,dish:dish,price:price,forTable:table}];
     }
-    else if(table==='2'){
-      setTable2Orders(prevOrders=>{
-        const updatedOrderds = [...prevOrders];
-        updatedOrderds.unshift({orderNumber:orderNumber,dish:dish,price:price});
-        return updatedOrderds
-      })   
-    }
-    else{
-      setTable3Orders(prevOrders=>{
-        const updatedOrderds = [...prevOrders];
-        updatedOrderds.unshift({orderNumber:orderNumber,dish:dish,price:price});
-        return updatedOrderds
-      })    
-    }
-
-    localStorage.setItem(orderNumber,JSON.stringify({dish:dish,price:price,forTable:table}));
-
+    setCurrentOrders(savedOrders);
+    localStorage.setItem('orders',JSON.stringify(savedOrders))
   };
   
-  const deleteOrderHandler = (table,orderNumber) => {
-    if(table==='1'){
-      setTable1Orders(prevOrders=>{
-        const updatedOrderds = prevOrders.filter(order => order.orderNumber!==orderNumber);
-        return updatedOrderds
-      })
-    }
-    else if(table==='2'){
-      setTable2Orders(prevOrders=>{
-        const updatedOrderds = prevOrders.filter(order => order.orderNumber!==orderNumber);
-        return updatedOrderds
-      })   
-    }
-    else{
-      setTable3Orders(prevOrders=>{
-        const updatedOrderds = prevOrders.filter(order => order.orderNumber!==orderNumber);
-        return updatedOrderds
-      })    
-    }
-
-    localStorage.removeItem(orderNumber);
-
+  const deleteOrderHandler = (orderNumber) => {
+    const  savedOrders = JSON.parse(localStorage.getItem('orders'));
+    const updatedOrders = savedOrders.filter(order => order.orderNumber!==orderNumber)
+    setCurrentOrders(updatedOrders);
+    localStorage.setItem('orders',JSON.stringify(updatedOrders))
   };
 
   return (
     <React.Fragment>
       <OrderFrom onNewOrder={newOrderHandler} />
-      <Table number='1' orders={table1Orders} onDelete={deleteOrderHandler}/>
-      <Table number='2' orders={table2Orders} onDelete={deleteOrderHandler}/>
-      <Table number='3' orders={table3Orders} onDelete={deleteOrderHandler}/>
+      <div className="tables-div">
+        <Table number='1' orders={currentOrders.filter(order => order.forTable==='1')} onDelete={deleteOrderHandler}/>
+        <Table number='2' orders={currentOrders.filter(order => order.forTable==='2')} onDelete={deleteOrderHandler}/>
+        <Table number='3' orders={currentOrders.filter(order => order.forTable==='3')} onDelete={deleteOrderHandler}/>
+      </div>
     </React.Fragment>
   );
 }

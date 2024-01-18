@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import Card from "../UI/Card/Card";
 import Button from "../UI/Button/Button";
+import './Order-Form.css'
 
 const OrderFrom = (props) => {
 
@@ -36,7 +37,7 @@ const OrderFrom = (props) => {
 
     return (
         <Card>
-            <form onSubmit={submitHandler}>
+            <form onSubmit={submitHandler} className="order-form">
                 <label>Order Number</label>
                 <input type='number' onChange={orderNumberChangeHandler} value={enteredOrderNumber}/>
                 <label>Select Dish</label>

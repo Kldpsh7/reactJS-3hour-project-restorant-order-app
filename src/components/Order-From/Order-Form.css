@@ -1,0 +1,32 @@
+.order-form{
+    text-align: center;
+    font-size: 20px;
+}
+
+.order-form label{
+    display: block;
+    font-size: inherit;
+}
+
+.order-form input{
+    display: block;
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 20rem;
+    font-size: inherit;
+}
+
+.order-form select{
+    background: grey;
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 20rem;
+    font-size: inherit;
+}
+
+.order-form Button{
+    font-size: inherit;
+    display: block;
+    margin: auto;
+    margin-top: 5px;
+}
