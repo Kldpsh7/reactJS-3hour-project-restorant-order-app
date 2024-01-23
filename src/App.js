@@ -9,7 +9,7 @@ function App() {
 
   useEffect(()=>{
     const savedOrders = JSON.parse(localStorage.getItem('orders'));
-    if(savedOrders.length>0){
+    if(savedOrders && savedOrders.length>0){
       setCurrentOrders(savedOrders)
     }
   },[])
