@@ -8,11 +8,10 @@
 }
 
 .table{
-    display: inline-block;
     padding-top: 0;
     padding-left: 0;
     padding-right: 0;
-    width: 33%;
+    width: 30rem;
     text-align: center;
     margin-left: 10px;
     margin-right: 10px;
