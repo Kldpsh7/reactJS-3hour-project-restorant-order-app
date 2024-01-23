@@ -6,11 +6,3 @@
   display: inline-flex;
 }
 
-.table-heading{
-  background-color: black;
-  color: aliceblue;
-  margin-top: 0;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  margin-bottom: 0;
-}

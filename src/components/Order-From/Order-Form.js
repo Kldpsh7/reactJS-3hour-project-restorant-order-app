@@ -1,7 +1,8 @@
 import React, {useState, useReducer, useEffect, useRef} from "react";
 import Card from "../UI/Card/Card";
 import Button from "../UI/Button/Button";
-import './Order-Form.css'
+import './Order-Form.css';
+import CardHeader from "../UI/Card-Header/Card-Header";
 
 const orderNumberReducer = (state,action) => {
     if(action.type==='USER_INPUT'){
@@ -110,6 +111,7 @@ const OrderFrom = (props) => {
 
     return (
         <Card>
+            <CardHeader class='form-heading' value='Place New Order'/>
             <form onSubmit={submitHandler} className="order-form">
                 <label>Order Number</label>
                 <input type='number' onChange={orderNumberChangeHandler} className={orderNUmberState.isValid===false ? 'invalid': ''} onBlur={validateOrderNumberHandler} ref={orderNumberInputRef}/>

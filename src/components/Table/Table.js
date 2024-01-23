@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "../UI/Card/Card";
 import Order from "../Order/Order";
+import CardHeader from "../UI/Card-Header/Card-Header";
 
 const Table = (props) => {
 
@@ -10,7 +11,7 @@ const Table = (props) => {
 
     return (
         <Card class='table'>
-            <h1 className="table-heading">Table {props.number}</h1>
+            <CardHeader class='table-heading' value={`Table ${props.number}`}/>
                 {props.orders.map(order=>{
                     return <Order key={order.orderNumber} orderNumber={order.orderNumber} dish={order.dish} price={order.price} onDelete={onDelete}/>
                 })}
