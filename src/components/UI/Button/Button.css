@@ -1,0 +1,40 @@
+.button {
+    font: inherit;
+    border: 1px solid #4f005f;
+    background: #4f005f;
+    color: white;
+    cursor: pointer;
+    border-radius: 30px;
+  }
+
+  .delete{
+    border: 1px solid #d53e27;
+    background: #d53e27;
+  }
+  
+  .button:hover,
+  .button:active,
+  .button:focus {
+    background: #741188;
+    border-color: #741188;
+  } 
+
+  .delete:hover,
+  .delete:active {
+    background: #f05841;
+    border-color: #f05841;
+  } 
+  
+  .button:focus {
+    outline: none;
+  }
+  
+  button:disabled,
+  button:focus:disabled,
+  button:hover:disabled,
+  button:active:disabled {
+    background: #727272;
+    border-color: #727272;
+    color: #ffffff;
+    cursor: not-allowed;
+  }

@@ -9,7 +9,7 @@ const Order = props => {
     return (
         <div className="order-div">
             <li>{`Order: ${props.orderNumber} - ${props.dish} - ${props.price}.00/-`}</li>
-            <Button value='Delete' onClick={onDelete}></Button>
+            <Button value='Delete' onClick={onDelete} class='delete'></Button>
         </div>
     )
 }

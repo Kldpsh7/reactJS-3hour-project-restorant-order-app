@@ -16,6 +16,10 @@
     font-size: inherit;
 }
 
+.invalid{
+    background-color: rgb(243, 169, 148);
+}
+
 .order-form select{
     background: grey;
     border: 1px solid gray;
